@@ -1,0 +1,85 @@
+from cProfile import label
+from errno import ENETRESET
+from tkinter import *
+import math
+janela = Tk()
+
+janela.title("calculo de baskara")
+janela.geometry("400x200")
+janela.configure(background='#dde')
+
+Label(janela, text='valor A:', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=10, width=100, height=20)
+
+vValorA = Entry(janela)
+vValorA.place(x=120, y=10, width=200, height=20)
+
+Label(janela, text='Valor B:', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=40, width=100, height=20)
+
+vValorB = Entry(janela)
+
+vValorB.place(x=120, y=40, width=200, height=20)
+
+Label(janela, text='valor C:', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=70, width=100, height=20)
+
+vValorC = Entry(janela)
+
+vValorC.place(x=120, y=70, width=200, height=20)
+
+Label(janela, text='Resposta P: ', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=100, width=100, height=20)
+
+lblResP = Label(janela, text=' ', background='#fff',
+                anchor=W)
+lblResP.place(x=120, y=100, width=200, height=20)
+
+vCalculo = 0
+
+Label(janela, text='Resposta N: ', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=130, width=100, height=20)
+
+lblRespN = Label(janela, text=' ', background='#fff',
+                 anchor=W)
+lblRespN.place(x=120, y=130, width=200, height=20)
+
+Label(janela, text='delta = 0: ', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=160, width=100, height=20)
+
+lblDelta0 = Label(janela, text=' ', background='#fff',
+                  anchor=W)
+lblDelta0.place(x=120, y=160, width=200, height=20)
+
+
+def calculo():
+    A = float(vValorA.get())
+    B = float(vValorB.get())
+    C = float(vValorC.get())
+
+    delta = (B*B) - 4 * A * C
+    if (delta < 0):
+        lblDelta0['text'] = 'não tem raizes reias'
+        lblResP['text'] = ' '
+        lblRespN['text'] = ' '
+
+    elif (delta == 0):
+        positivo = -B / (2*A)
+        lblDelta0['text'] = '{}'.format(positivo)
+        lblResP['text'] = ' '
+        lblRespN['text'] = ' '
+    else:
+        raiz = math.sqrt(delta)
+
+        positivo = (-B + raiz)/(2*A)
+        negativo = (-B - raiz)/(2*A)
+        lblDelta0['text'] = ' '
+        lblResP['text'] = '{}'.format(positivo)
+        lblRespN['text'] = '{}'.format(negativo)
+
+
+
+Button(janela, text='Calcular', command=calculo).place(
+    x=325, y=160, width=55, height=20)
+
+mainloop()

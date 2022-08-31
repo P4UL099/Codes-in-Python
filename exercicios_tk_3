@@ -1,0 +1,49 @@
+from tkinter import *
+
+janela = Tk()
+
+janela.title("calcular salario de horas trabalhadas")
+janela.geometry("400x200")
+janela.configure(background='#dde')
+##dde
+Label(janela, text='nome:', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=10, width=100, height=20)
+
+vNome = Entry(janela)
+vNome.place(x=120, y=10, width=200, height=20)
+
+Label(janela, text='horas totais:', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=40, width=100, height=20)
+
+vItotais = Entry(janela)
+
+vItotais.place(x=120, y=40, width=200, height=20)
+
+Label(janela, text='valor da hora:', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=70, width=100, height=20)
+
+vValor = Entry(janela)
+
+vValor.place(x=120, y=70, width=200, height=20)
+
+Label(janela, text='Resposta: ', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=100, width=100, height=20)
+
+lblResp = Label(janela, text=' ', background='#fff',
+                anchor=W)
+lblResp.place(x=120, y=100, width=200, height=20)
+vCalculo = 0
+
+
+def calculo():
+    totais = int(vItotais.get())
+    hora = float(vValor.get())
+    nome = vNome.get()
+    vCalculo = totais * hora
+    lblResp['text'] = 'O salario {} é de R$ {}'.format(nome, vCalculo)
+
+
+Button(janela, text='Calcular', command=calculo).place(
+    x=325, y=100, width=55, height=20)
+
+mainloop()

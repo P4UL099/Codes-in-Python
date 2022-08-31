@@ -1,0 +1,49 @@
+from tkinter import *
+
+janela = Tk()
+
+janela.title("calcular bonus de venda ")
+janela.geometry("400x200")
+janela.configure(background='#dde')
+
+Label(janela, text='nome:', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=10, width=100, height=20)
+
+vNome = Entry(janela)
+vNome.place(x=120, y=10, width=200, height=20)
+
+Label(janela, text='salario fixo:', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=40, width=100, height=20)
+
+vSal = Entry(janela)
+
+vSal.place(x=120, y=40, width=200, height=20)
+
+Label(janela, text='total de vendas:', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=70, width=100, height=20)
+
+vVendas = Entry(janela)
+
+vVendas.place(x=120, y=70, width=200, height=20)
+
+Label(janela, text='Resposta: ', background='#fff', foreground='#009',
+      anchor=W).place(x=10, y=100, width=100, height=20)
+
+lblResp = Label(janela, text=' ', background='#fff',
+                anchor=W)
+lblResp.place(x=120, y=100, width=200, height=20)
+vCalculo = 0
+
+
+def calculo():
+    vendas = float(vVendas.get())
+    sal = float(vSal.get())
+    nome = vNome.get()
+    vCalculo = sal + (vendas * 15/100)
+    lblResp['text'] = 'O salario final {} é de R$ {}'.format(nome, vCalculo)
+
+
+Button(janela, text='Calcular', command=calculo).place(
+    x=325, y=100, width=55, height=20)
+
+mainloop()
